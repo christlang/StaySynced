@@ -16,10 +16,11 @@ for %%A in (%DESTINATION%/*) do set /a cnt+=1
 echo %START_TIME% Dateien davor : %cnt% >> %LOG%
 
 REM 
-REM PURGE - lässt in DESTINATION nur Dateien übrig die es auch in SOURCE gibt
-REM *.pdf - nur PDF-Dateien werden beim Kopieren beachtet
-REM 
-robocopy %SOURCE% %DESTINATION% *.pdf /PURGE
+REM *.pdf  - nur PDF-Dateien werden beim Kopieren beachtet
+REM /PURGE - lässt in DESTINATION nur Dateien übrig die es auch in SOURCE gibt
+REM /S     - Unterverzeichnisse einbeziehen
+REM
+robocopy %SOURCE% %DESTINATION% *.pdf /PURGE /S
 
 set cnt=0
 for %%A in (%DESTINATION%/*) do set /a cnt+=1
