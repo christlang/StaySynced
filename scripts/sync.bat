@@ -12,10 +12,10 @@ set START_TIME=%date% %time%
 echo %START_TIME% starte script >> %LOG%
 
 set cnt=0
-for %%A in (%DESTINATION%/*) do set /a cnt+=1
+dir /b /S "%DESTINATION%" | find ".pdf" /C /I > tmp && set /p cnt=<tmp && del tmp
 echo %START_TIME% Dateien davor : %cnt% >> %LOG%
 
-REM 
+REM
 REM *.pdf  - nur PDF-Dateien werden beim Kopieren beachtet
 REM /PURGE - lässt in DESTINATION nur Dateien übrig die es auch in SOURCE gibt
 REM /S     - Unterverzeichnisse einbeziehen
@@ -23,7 +23,7 @@ REM
 robocopy %SOURCE% %DESTINATION% *.pdf /PURGE /S
 
 set cnt=0
-for %%A in (%DESTINATION%/*) do set /a cnt+=1
+dir /b /S "%DESTINATION%" | find ".pdf" /C /I > tmp && set /p cnt=<tmp && del tmp
 echo %START_TIME% Dateien danach: %cnt% >> %LOG%
 
 echo %START_TIME% beende script >> %LOG%
